@@ -1,0 +1,54 @@
+{
+  "test_size": 0.2,
+  "valid_size": 0.2,
+  "path" : {
+    "root_folder" : "../dataset/",
+    "train_path" : "train/train/",
+    "target_path" : "train_kaggle.csv",
+    "test_path" : "test/test",
+    "checkpoint_filepath" : "./checkpoint/"
+  },
+  "load" : {
+    "load_previous_model": false,
+    "previous_model_name": "model_checkpoint_21.h5"
+  },
+  "compile" : {
+    "loss" : "categorical_crossentropy",
+    "optimizer": "adam",
+    "metrics" : ["accuracy"],
+    "verbose" : 1
+  },
+  "callbacks" : true,
+  "early_stopping" : {
+    "activate" : true,
+    "monitor" : "loss",
+    "mode" : "min",
+    "patience" : 50,
+    "min_delta" : 0.0001,
+    "verbose" : 1
+  },
+  "model_checkpoint" : {
+    "activate" : true,
+    "monitor" : "loss",
+    "mode" : "min",
+    "save_best_only" : true,
+    "verbose" : 1,
+    "file_basename" : "model_checkpoint_{}.h5"
+  },
+  "reduce_lr_on_plateau": {
+    "activate" : true,
+    "monitor" : "loss",
+    "mode": "auto",
+    "factor": 0.25,
+    "patience" : 3,
+    "min_delta" : 0.0001,
+    "cooldown" : 0,
+    "min_lr" : 0,
+    "verbose" : 1
+  },
+  "fit" : {
+    "epochs": 1,
+    "batch_size" : 128,
+    "verbose" : 2
+  }
+}
